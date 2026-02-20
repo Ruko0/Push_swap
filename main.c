@@ -13,6 +13,24 @@ void print_matrix(char ** mtx)
 		printf("%s\n", mtx[i++]);
 }
 
+void print_stack(t_stack *A)
+{
+	t_stack *tmp = A;
+	while(tmp)
+	{
+		printf("%d\n", tmp->number);
+		tmp = tmp->next;
+	}
+}
+
+void free_matrix(char ** matrix)
+{
+	int i = 0;
+	while(matrix[i])
+		free(matrix[i++]);
+	free(matrix);
+}
+
 // allocation handling !!
 int main(int argc, char **argv)
 {
@@ -22,18 +40,28 @@ int main(int argc, char **argv)
 	char *new = NULL;
 	new = extract_string(argv);
 	if (!new)
-		return ft_putendl_fd("Error\n", 2), 1;
+		return ft_putendl_fd("Error1\n", 2), 1;
 	//split with spaces
 	char **matrix = ft_split(new, ' ');
 	if (!matrix || !matrix[0])
-		return ft_putendl_fd("Error\n", 2), 1;
-	// print_matrix(matrix);
+		return ft_putendl_fd("Error2\n", 2), 1;
 	// //none digits
+	free(new);
 	if (!input_validator(matrix))
 		return ft_putendl_fd("Error3\n", 2), 1;
-	printf("all good\n");
-	// //stack population
-	t_stack *A = NULL;
-	// (duplicates, overflow)
-	// //or error throw
+	// //stack population and (overflow handle)
+	t_stack *A;
+	if (!populate_stack(&A, matrix))
+		return ft_putendl_fd("Error4\n", 2), 1;
+	// (duplicates)
+	free_matrix(matrix);
+	if (!stack_dup_check(A))
+		return ft_putendl_fd("Error5\n", 2), 1;
+	set_prev(A);
+	// printf("before\n");
+	// print_stack(A);
+	
+	// printf("after\n");
+	// print_stack(A);
+
 }

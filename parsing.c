@@ -11,7 +11,6 @@ char *extract_string(char **argv)
 		result = ft_strjoin(result, " ");
 		i++;
 	}
-	//./a.out " 1 2 3 4 5" 9 0 -3
 	return result;
 }
 
@@ -36,10 +35,6 @@ bool check_comp(char *str)
 	if ((a && b) || (b))
 		return true;
 	return false;
-}
-bool check_dup(char **mtx, int i)
-{
-	return true;
 }
 
 bool input_validator(char **matrix)
