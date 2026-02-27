@@ -1,65 +1,44 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   operations.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amn <amn@student.42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/26 00:00:00 by amn               #+#    #+#             */
+/*   Updated: 2026/02/26 19:55:39 by amn              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Push_swap.h"
 
-void stack_swap(t_stack *n)
-{
-	if (n->size == 1)
-		return;
-	int tmp = n->number;
-	n->number = n->next->number;
-	n->next->number = tmp;
-}
-
-void sa(t_stack *n)
+void	sa(t_stack *n)
 {
 	stack_swap(n);
-	printf("sa\n");
+	write(1, "sa\n", 3);
 }
 
-void sb(t_stack *n)
+void	sb(t_stack *n)
 {
 	stack_swap(n);
-	printf("sb\n");
+	write(1, "sb\n", 3);
 }
 
-void ss(t_stack *a, t_stack *b)
+void	ss(t_stack *a, t_stack *b)
 {
 	stack_swap(a);
 	stack_swap(b);
-	printf("ss\n");
+	write(1, "ss\n", 3);
 }
 
-void detach_node(t_stack **stack, t_stack *n, bool free)
-{
-	t_stack *tmp = *stack;
-	while(tmp)
-	{
-		if (tmp->number == n->number)
-		tmp= tmp->next;
-	}
-}
-
-void stack_rotate(t_stack *n)
-{
-	t_stack *tmp1;
-	t_stack *tmp2;
-
-	  
-}
-void ra(t_stack *n)
+void	ra(t_stack **n)
 {
 	stack_rotate(n);
-	printf("ra\n");
+	write(1, "ra\n", 3);
 }
 
-void rb(t_stack *n)
+void	rb(t_stack **n)
 {
 	stack_rotate(n);
-	printf("rb\n");
-}
-
-void rr(t_stack *a, t_stack *b)
-{
-	stack_rotate(a);
-	stack_swap(b);
-	printf("rr\n");
+	write(1, "rb\n", 3);
 }

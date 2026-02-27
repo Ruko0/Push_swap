@@ -1,67 +1,78 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amn <amn@student.42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/26 00:00:00 by amn               #+#    #+#             */
+/*   Updated: 2026/02/26 19:55:40 by amn              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Push_swap.h"
 
-/*
-In case of error, it must display "Error" followed by an ’\n’ on the standard error.
-Errors include, for example: some arguments not being integers, some arguments
-exceeding the integer limits, and/or the presence of duplicates.
-*/
-
-void print_matrix(char ** mtx)
+void	free_matrix(char **matrix)
 {
-	int i = 0;
-	while (mtx[i])
-		printf("%s\n", mtx[i++]);
-}
+	int	i;
 
-void print_stack(t_stack *A)
-{
-	t_stack *tmp = A;
-	while(tmp)
+	i = 0;
+	while (matrix[i])
 	{
-		printf("%d\n", tmp->number);
-		tmp = tmp->next;
+		free(matrix[i]);
+		i++;
 	}
-}
-
-void free_matrix(char ** matrix)
-{
-	int i = 0;
-	while(matrix[i])
-		free(matrix[i++]);
 	free(matrix);
 }
 
-// allocation handling !!
-int main(int argc, char **argv)
+static void	error_exit(t_stack *a, char **matrix)
 {
-	if (argc < 2)
-		return 1;
-	//join all argvs with space padding
-	char *new = NULL;
-	new = extract_string(argv);
-	if (!new)
-		return ft_putendl_fd("Error1\n", 2), 1;
-	//split with spaces
-	char **matrix = ft_split(new, ' ');
-	if (!matrix || !matrix[0])
-		return ft_putendl_fd("Error2\n", 2), 1;
-	// //none digits
-	free(new);
-	if (!input_validator(matrix))
-		return ft_putendl_fd("Error3\n", 2), 1;
-	// //stack population and (overflow handle)
-	t_stack *A;
-	if (!populate_stack(&A, matrix))
-		return ft_putendl_fd("Error4\n", 2), 1;
-	// (duplicates)
-	free_matrix(matrix);
-	if (!stack_dup_check(A))
-		return ft_putendl_fd("Error5\n", 2), 1;
-	set_prev(A);
-	// printf("before\n");
-	// print_stack(A);
-	
-	// printf("after\n");
-	// print_stack(A);
+	if (a)
+		free_stack(a);
+	if (matrix)
+		free_matrix(matrix);
+	ft_putendl_fd("Error", 2);
+	exit(1);
+}
 
+static int	build_stack(t_stack **a, char **matrix)
+{
+	int	size;
+
+	if (!input_validator(matrix))
+		error_exit(NULL, matrix);
+	if (!populate_stack(a, matrix))
+		error_exit(*a, matrix);
+	if (stack_dup_check(*a))
+		error_exit(*a, matrix);
+	size = ft_stack_size(*a);
+	free_matrix(matrix);
+	return (size);
+}
+
+int	main(int argc, char **argv)
+{
+	char	*str;
+	char	**matrix;
+	t_stack	*a;
+	int		a_sz;
+
+	if (argc < 2)
+		return (0);
+	str = extract_string(argv);
+	if (!str)
+		return (1);
+	matrix = ft_split(str, ' ');
+	free(str);
+	if (!matrix || !matrix[0])
+	{
+		if (matrix)
+			free_matrix(matrix);
+		return (0);
+	}
+	a = NULL;
+	a_sz = build_stack(&a, matrix);
+	sort_stack(&a, &a_sz);
+	free_stack(a);
+	return (0);
 }

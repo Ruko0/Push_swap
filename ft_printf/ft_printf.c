@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otkibou <otkibou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amn <amn@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 16:19:42 by otkibou           #+#    #+#             */
-/*   Updated: 2026/02/19 21:55:58 by otkibou          ###   ########.fr       */
+/*   Updated: 2026/02/26 19:55:40 by amn              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,9 @@ int	ft_printf(const char *str, ...)
 	while (str[i])
 	{
 		if (str[i] != '%')
-			counter += ft_putchar_fd(str[i], 1);
+			counter += pf_putchar_fd(str[i], 1);
 		else
-		{
-			get_Pguts(&i, str, &counter, v_list);
-		}
+			get_pguts(&i, str, &counter, v_list);
 		i++;
 	}
 	va_end(v_list);

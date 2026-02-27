@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otkibou <otkibou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amn <amn@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 16:20:16 by otkibou           #+#    #+#             */
-/*   Updated: 2025/11/18 16:27:35 by otkibou          ###   ########.fr       */
+/*   Updated: 2026/02/26 19:22:40 by amn              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putstr_fd(char *s, int fd)
+int	pf_putstr_fd(char *s, int fd)
 {
 	int	i;
 

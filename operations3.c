@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_put_u_nbr_fd.c                                  :+:      :+:    :+:   */
+/*   operations3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amn <amn@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/18 16:20:02 by otkibou           #+#    #+#             */
-/*   Updated: 2026/02/26 19:55:39 by amn              ###   ########.fr       */
+/*   Created: 2025/02/26 00:00:00 by amn               #+#    #+#             */
+/*   Updated: 2026/02/26 19:55:40 by amn              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "Push_swap.h"
 
-int	pf_put_u_nbr_fd(unsigned int nb, int fd)
+void	pa(t_stack **a, t_stack **b, int *a_sz, int *b_sz)
 {
-	int	bomba9la;
+	stack_push(b, a, b_sz, a_sz);
+	write(1, "pa\n", 3);
+}
 
-	bomba9la = c_uint(nb);
-	if (nb > 9)
-	{
-		pf_putnbr_fd(nb / 10, fd);
-	}
-	pf_putchar_fd(nb % 10 + '0', fd);
-	return (bomba9la);
+void	pb(t_stack **a, t_stack **b, int *a_sz, int *b_sz)
+{
+	stack_push(a, b, a_sz, b_sz);
+	write(1, "pb\n", 3);
 }

@@ -22,7 +22,7 @@ $(NAME): $(OBJECTS)
 
 
 
-%.o: %.c libft.h
+%.o: %.c ft_printf.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

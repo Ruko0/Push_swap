@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   base_16.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otkibou <otkibou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amn <amn@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 16:19:09 by otkibou           #+#    #+#             */
-/*   Updated: 2025/11/18 16:24:45 by otkibou          ###   ########.fr       */
+/*   Updated: 2026/02/26 19:22:40 by amn              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ int	base_16(unsigned long n, char *base)
 	{
 		base_16(n / 16, base);
 	}
-	ft_putchar_fd(base[n % 16], 1);
+	pf_putchar_fd(base[n % 16], 1);
 	return (i);
 }

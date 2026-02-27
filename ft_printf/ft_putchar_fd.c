@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otkibou <otkibou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amn <amn@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 13:53:11 by otkibou           #+#    #+#             */
-/*   Updated: 2025/11/18 16:29:59 by otkibou          ###   ########.fr       */
+/*   Updated: 2026/02/26 19:22:40 by amn              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putchar_fd(char c, int fd)
+int	pf_putchar_fd(char c, int fd)
 {
 	return (write(fd, &c, 1));
 }

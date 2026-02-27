@@ -1,50 +1,74 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amn <amn@student.42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/26 00:00:00 by amn               #+#    #+#             */
+/*   Updated: 2026/02/26 19:55:39 by amn              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Push_swap.h"
 
-char *extract_string(char **argv)
+static char	*join_free(char *s1, char *s2)
 {
-	char *result = "";
-	int i = 1;
+	char	*out;
 
-	while (argv[i])
-	{
-		result = ft_strjoin(result, argv[i]);
-		result = ft_strjoin(result, " ");
-		i++;
-	}
-	return result;
+	out = ft_strjoin(s1, s2);
+	free(s1);
+	return (out);
 }
 
-bool check_comp(char *str)
+char	*extract_string(char **argv)
 {
-	bool a = false;
-	bool b = false;
-	int i = 0;
+	char	*result;
+	int		i;
 
-	if (str[0] == '+' || str[0] == '-')
+	result = ft_strdup("");
+	if (!result)
+		return (NULL);
+	i = 1;
+	while (argv[i] && result)
 	{
-		a = true;
+		result = join_free(result, argv[i]);
+		if (result && argv[i + 1])
+			result = join_free(result, " ");
 		i++;
 	}
+	return (result);
+}
+
+bool	check_comp(char *str)
+{
+	int		i;
+	bool	has_digit;
+
+	i = 0;
+	has_digit = false;
+	if (str[i] == '+' || str[i] == '-')
+		i++;
 	while (str[i])
 	{
-		b = true;
 		if (!ft_isdigit(str[i]))
-			return false;
+			return (false);
+		has_digit = true;
 		i++;
 	}
-	if ((a && b) || (b))
-		return true;
-	return false;
+	return (has_digit);
 }
 
-bool input_validator(char **matrix)
+bool	input_validator(char **matrix)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (matrix[i])
 	{
 		if (!check_comp(matrix[i]))
-			return false;
+			return (false);
 		i++;
 	}
-	return true;
+	return (true);
 }
